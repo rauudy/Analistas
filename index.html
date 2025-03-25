@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor - Clases Particulares</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+
+<body x-data="{ showModal: false }" class="bg-gray-100 font-sans">
+    <!-- Navegación Fija -->
+    <nav class="fixed top-0 left-0 right-0 bg-blue-600 text-white p-4 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">Nombre del Tutor</div>
+            <div class="space-x-4">
+                <a href="#inicio" class="hover:text-blue-200">Inicio</a>
+                <a href="#temas" class="hover:text-blue-200">Temas</a>
+                <a href="#informacion" class="hover:text-blue-200">Información</a>
+                <a href="#contacto" class="hover:text-blue-200">Contacto</a>
+                <button @click="showModal = true" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded">
+                    Solicitar Clase
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido con Padding Superior para la Navegación Fija -->
+    <div class="pt-20">
+        <!-- Sección de Inicio -->
+        <section id="inicio" class="bg-white py-16 text-center">
+            <div class="container mx-auto">
+                <h1 class="text-4xl font-bold mb-4">Clases Particulares</h1>
+                <p class="text-xl text-gray-600">Aprendizaje personalizado y efectivo</p>
+            </div>
+        </section>
+
+        <!-- Sección de Temas -->
+        <section id="temas" class="bg-gray-200 py-16">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Temas que Imparto</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold mb-4">Tema 1</h3>
+                        <p>Descripción detallada del tema que puedes impartir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold mb-4">Tema 2</h3>
+                        <p>Descripción detallada del tema que puedes impartir.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold mb-4">Tema 3</h3>
+                        <p>Descripción detallada del tema que puedes impartir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Información -->
+        <section id="informacion" class="py-16">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8">Información del Tutor</h2>
+                <div class="max-w-2xl mx-auto">
+                    <p class="text-lg text-gray-700">
+                        Aquí puedes escribir una descripción sobre ti, tu experiencia,
+                        metodología de enseñanza y cualquier otro detalle relevante.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal de Solicitud de Clase -->
+    <div x-show="showModal" x-cloak @click.self="showModal = false"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg w-96">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Solicitar Clase</h2>
+                <button @click="showModal = false" class="text-gray-600 hover:text-gray-900">
+                    ✕
+                </button>
+            </div>
+            <form action="https://formspree.io/f/meoazanw" method="POST">
+                <div class="mb-4">
+                    <label class="block mb-2">Nombre Completo</label>
+                    <input type="text" name="nombre" required class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Correo Electrónico</label>
+                    <input type="email" name="email" required class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Teléfono</label>
+                    <input type="tel" name="telefono" required class="w-full p-2 border rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Tema de Interés</label>
+                    <select name="tema" required class="w-full p-2 border rounded">
+                        <option value="">Selecciona un tema</option>
+                        <option value="tema1">Tema 1</option>
+                        <option value="tema2">Tema 2</option>
+                        <option value="tema3">Tema 3</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2">Mensaje Adicional</label>
+                    <textarea name="mensaje" class="w-full p-2 border rounded" rows="4"></textarea>
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Enviar Solicitud
+                    </button>
+                    <button type="button" @click="showModal = false"
+                        class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Tutor - Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+
+</html>
